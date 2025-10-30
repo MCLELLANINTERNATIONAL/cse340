@@ -1,6 +1,363 @@
-/******* Change Box Model ***************/
+/**************** 
+   Base / Reset
+ ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+/**************** 
+  Tokens / Theme
+ ***************/
+
+:root {
+  --ink: #111827;
+  --muted: #4b5563;
+  --panel: #ffffff;
+  --nav: #1f2937;
+  --navText: #ffffff;
+  --accent: #2563eb;
+  --accent-2: #0891b2;
+  --border: #8bd1f9;
+  --bg-check: url("/images/site/checkerboard.jpg");
+}
+
+/**************** 
+   Document Body
+ ***************/
+
+html, body { 
+  height: 100%; 
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background-image: var(--bg-check);
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: auto;
+}
+
+/**************** 
+   Layout Wrapper
+ ***************/
+
+#wrapper {
+  max-width: 960px;
+  margin: 1.25rem auto;
+  background: var(--panel);
+  border: 4px solid var(--border);
+  border-radius: 14px;
+  padding: 0 0 1rem;
+  box-shadow: 0 0 0 2px var(--border);
+  overflow: hidden;
+}
+
+/**************** 
+      Links
+ ***************/
+ 
+a { color: var(--accent); }
+
+/**************** 
+     Header
+ ***************/
+
+#top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+}
+
+#top-header .siteName a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.9rem;
+  letter-spacing: .2px;
+}
+
+#top-header .acc { 
+  font-size: .95rem; 
+}
+
+#top-header .acc a { 
+  color: var(--muted); 
+  text-decoration: none; 
+}
+
+#top-header .acc a:hover, 
+#top-header .acc a:focus { 
+  color: var(--ink); 
+  text-decoration: underline; 
+}
+
+/**************** 
+    Main nav 
+***************/
+
+nav {
+  background: var(--nav);
+  border-radius: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 860px;
+  margin: 0;
+  padding: 0.4rem 0.2rem;
+}
+
+nav a {
+  display: block;
+  color: var(--navText);
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background .3s ease, color .3s ease;
+}
+
+nav a:hover, nav a:focus {
+  background: #fff;
+  color: var(--nav);
+}
+
+/**************** 
+     Welcome
+ ***************/
+
+main {
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 0 0 10px 10px;
+}
+
+#home { padding: 1rem; }
+
+/**************** 
+     Hero
+ ***************/
+
+.hero { 
+  padding: .25rem 0 1rem; 
+}
+
+.hero-card { 
+  padding: .25rem 0; 
+}
+
+.hero h2 { 
+  font-size: 1.65rem; 
+  margin: .25rem 0 .75rem; 
+}
+
+.product {
+  position: relative;
+}
+
+.product-art img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  padding: .5rem;
+  background: #fff;
+}
+
+.product-copy {
+  position: absolute;
+  left: 4%;
+  top: 5%;
+  display: inline-block;
+  width: auto;
+  min-width: 220px;
+  max-width: 72%;
+  background: rgba(255,255,255,.9);
+  border-radius: 10px;
+  padding: .6rem .8rem .8rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  font-size: clamp(.9rem, 1.1vw, 1rem);
+  line-height: 1.35;
+}
+
+.product-title {
+  font-size: clamp(1.25rem, 1.4vw, 1.8rem);
+  color: var(--accent-2);
+  margin: 0 0 .35rem;
+  font-weight: 800;
+}
+
+.product-features { 
+  margin: 0 0 .65rem; 
+  padding-left: 1rem; 
+}
+
+.product-features li { 
+  margin: .1rem 0; 
+}
+
+.own-today img {
+  display: inline-block;
+  width: clamp(132px, 18vw, 200px);
+  height: auto;
+  border-radius: 8px;
+}
+
+/**************** 
+ Reviews & Upgrades
+ (Content Columns)
+ ***************/
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: .5rem;
+  background: #ffffff;
+}
+
+.columns section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.columns h2 { margin: .25rem 0 .75rem; }
+
+.review-list { padding-left: 1.25rem; }
+
+.review-list li { margin: .5rem 0; }
+
+.upgrade-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+  padding: 0;
+  margin: 0;
+}
+
+.upgrade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  background: #7dd3fc;
+  border-radius: 12px;
+  padding: .5rem;
+  text-decoration: none;
+  border: 1px solid #0284c7;
+}
+
+.upgrade img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #e2e8f0;
+}
+
+.upgrade span {
+  color: #0c4a6e;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/**************** 
+      Footer
+ ***************/
+
+footer {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem 1.25rem 0;
+  font-size: .9rem;
+  color: #374151;
+  background: #ffffff;
+  border-radius: 0 0 10px 10px;
+}
+
+/**************** 
+    Media - Larger 
+    Screens/ 
+    Responsive
+ ***************/
+
+@media (min-width: 900px) {
+  #wrapper { 
+    padding: 0 0 1.25rem; 
+  }
+
+  #top-header { 
+    padding: 1rem 1.25rem 2.25rem; 
+  }
+
+  header#top-header + nav { 
+    margin: -2rem 0 1.25rem; 
+    border-radius: 0; 
+  }
+
+  .hero-card { 
+    padding: 0 1.25rem; 
+  }
+
+  .product-copy {
+    left: 2.25rem;
+    top: 2rem;
+    width: min(360px, 42%);
+    min-width: unset;
+    max-width: none;
+    padding: 1rem 1rem 1.25rem;
+    border-radius: 12px;
+    line-height: 1.45;
+    font-size: 1rem;
+  }
+
+  .product-title { 
+    font-size: 1.8rem; 
+  }
+  .own-today img { 
+    width: 200px; 
+  }
+
+  .columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .columns section:nth-child(1) { 
+    order: 2; 
+  }
+
+  .columns section:nth-child(2) { 
+    order: 1; 
+  }
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    flex-wrap: wrap;
+    width: 92%;
+    margin: 0 auto;
+    gap: 0.25rem;
+  }
+  nav a {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+  }
 }
