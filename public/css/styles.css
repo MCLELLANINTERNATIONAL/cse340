@@ -62,7 +62,10 @@ body {
       Links
  ***************/
  
-a { color: var(--accent); }
+a { 
+  color: var(--accent);
+  font-weight: 500; 
+}
 
 /**************** 
      Header
