@@ -57,11 +57,85 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* **************************************
+ * Build single vehicle detail HTML
+ * ************************************ */
+/*
+ * Build HTML for a single vehicle detail view
+ * @param {Object} vehicle
+ * @returns {string} HTML string
+ */
+Util.buildVehicleDetail = function (vehicle) {
+  const {
+    inv_year,
+    inv_make,
+    inv_model,
+    inv_price,
+    inv_miles,
+    inv_color,
+    inv_description,
+    inv_image,
+  } = vehicle
+
+  const priceFormatted = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(inv_price)
+
+  /*const milesFormatted = inv_miles
+    ? Number(inv_miles).toLocaleString("en-US")
+    : "0"*/
+
+  const milesFormatted = Number(inv_miles).toLocaleString("en-US")
+
+  return `
+  <section class="vehicle-detail" aria-label="Vehicle Details">
+    <figure class="vehicle-detail__image-wrapper">
+      <img 
+        src="${inv_image}" 
+        alt="Image of ${inv_year} ${inv_make} ${inv_model}"
+        class="vehicle-detail__image"
+        loading="lazy"
+      >
+    </figure>
+
+    <div class="vehicle-detail__content">
+      <h1 class="vehicle-detail__title">
+        ${inv_year} ${inv_make} ${inv_model}
+      </h1>
+
+      <p class="vehicle-detail__price">
+        <span class=label>Price:</span>
+        <strong>${priceFormatted}</strong>
+      </p>
+
+      <p class="vehicle-detail__miles">
+        <span class="label">Mileage:</span>
+        <strong>${milesFormatted} miles</strong>
+      </p>
+
+      <p class="vehicle-detail__year-make-model">
+        <strong>Vehicle:</strong> ${inv_year} ${inv_make} ${inv_model}
+      </p>
+
+      <p class="vehicle-detail__color">
+        <span class="label">Color:</span>
+        <strong>${inv_color}</strong> 
+      </p>
+
+      <p class="vehicle-detail__description">
+        ${inv_description}
+      </p>
+    </div>
+  </section>
+  `
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
-Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+Util.handleErrors = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 module.exports = Util

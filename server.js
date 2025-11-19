@@ -27,6 +27,11 @@ app.set("layout", "./layouts/layout") // not at views root
 app.use(static)
 //Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
+// Intentional error route (Task 3)
+app.get(
+  "/trigger-error",
+  utilities.handleErrors(baseController.triggerError)
+)
 // Inventory routes
 app.use("/inv", inventoryRoute)
 // File Not Found Route - must be last route in list
@@ -41,8 +46,14 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
-  res.render("errors/error", {
+  
+  let message
+  if(err.status == 404){ 
+    message = err.message
+  } else {
+    message = 'Oh no! There was a crash. Maybe try a different route?'
+  }
+  res.status(err.status || 500).render("errors/error", {
     title: err.status || 'Server Error',
     message,
     nav

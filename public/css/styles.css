@@ -355,6 +355,59 @@ main {
   transition: 0.18s ease;
 }
 
+/********************
+  Vehicle Detail View
+********************/
+
+.vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  align-items: flex-start;
+}
+
+.vehicle-detail__image-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.vehicle-detail__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vehicle-detail__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.vehicle-detail__title {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+}
+
+.vehicle-detail__price,
+.vehicle-detail__miles,
+.vehicle-detail__color {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.vehicle-detail .label {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.vehicle-detail__description {
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
 /**************** 
       Footer
  ***************/
@@ -424,6 +477,11 @@ footer {
 
   .columns section:nth-child(2) { 
     order: 1; 
+  }
+
+  .vehicle-detail {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+    gap: 2rem;
   }
 }
 

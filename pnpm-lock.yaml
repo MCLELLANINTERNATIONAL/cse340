@@ -23,6 +23,9 @@ importers:
       pg:
         specifier: ^8.8.0
         version: 8.16.3
+      validatorjs:
+        specifier: ^3.22.1
+        version: 3.22.1
     devDependencies:
       nodemon:
         specifier: ^3.1.0
@@ -497,6 +500,9 @@ packages:
   utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
+
+  validatorjs@3.22.1:
+    resolution: {integrity: sha512-451KiCt/3E8qV/8fOUdO0YkA8zUdQBNVxubg9jvgEB+JAg9IlRKrClzwq2ir2ndj7TWmPYQ7bXFb4BxcyX2iWw==}
 
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
@@ -992,6 +998,8 @@ snapshots:
   unpipe@1.0.0: {}
 
   utils-merge@1.0.1: {}
+
+  validatorjs@3.22.1: {}
 
   vary@1.1.2: {}
 
