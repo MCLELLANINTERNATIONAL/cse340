@@ -41,7 +41,6 @@ invCont.buildDetailView = async function (req, res, next) {
       const error = new Error("Vehicle not found")
       error.status = 404
       return next(error)
-      /*return next(new Error("Vehicle not found"))*/
     }
 
     const title = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
@@ -58,6 +57,5 @@ invCont.buildDetailView = async function (req, res, next) {
     next(err)
   }
 }
-
 
 module.exports = invCont

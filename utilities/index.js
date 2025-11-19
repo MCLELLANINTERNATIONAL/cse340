@@ -82,10 +82,6 @@ Util.buildVehicleDetail = function (vehicle) {
     currency: "USD",
   }).format(inv_price)
 
-  /*const milesFormatted = inv_miles
-    ? Number(inv_miles).toLocaleString("en-US")
-    : "0"*/
-
   const milesFormatted = Number(inv_miles).toLocaleString("en-US")
 
   return `
