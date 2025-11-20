@@ -1,9 +1,21 @@
 /* ************** Base / Reset ************* */
-*,
+/* Before */
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+}
+
+/* After (validator-safe) */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/*,
 *:before,
 *:after {
   box-sizing: border-box;
-}
+}*/
 
 /* *************** Tokens / Theme ************* */
 
