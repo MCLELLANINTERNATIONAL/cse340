@@ -1,15 +1,15 @@
-/**************** 
-   Base / Reset
- ***************/
+/* *************** 
+    Base / Reset 
+************** */
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
 
-/**************** 
+/* *************** 
   Tokens / Theme
- ***************/
+ ************** */
 
 :root {
   --ink: #111827;
@@ -23,9 +23,9 @@
   --bg-check: url("/images/site/checkerboard.jpg");
 }
 
-/**************** 
+/* *************** 
    Document Body
- ***************/
+ ************** */
 
 html, body { 
   height: 100%; 
@@ -43,9 +43,9 @@ body {
   background-size: auto;
 }
 
-/**************** 
+/* *************** 
    Layout Wrapper
- ***************/
+ ************** */
 
 #wrapper {
   max-width: 960px;
@@ -58,18 +58,18 @@ body {
   overflow: hidden;
 }
 
-/**************** 
+/* *************** 
       Links
- ***************/
+ ************** */
  
 a { 
   color: var(--accent);
   font-weight: 500; 
 }
 
-/**************** 
+/* *************** 
      Header
- ***************/
+ ************** */
 
 #top-header {
   display: flex;
@@ -102,9 +102,9 @@ a {
   text-decoration: underline; 
 }
 
-/**************** 
+/* *************** 
     Main nav 
-***************/
+************** */
 
 nav {
   background: var(--nav);
@@ -141,9 +141,9 @@ nav a:hover, nav a:focus {
   color: var(--nav);
 }
 
-/**************** 
+/* *************** 
      Welcome
- ***************/
+ ************** */
 
 main {
   padding: 1rem;
@@ -153,9 +153,22 @@ main {
 
 #home { padding: 1rem; }
 
-/**************** 
+/* *************** 
+     Welcome
+ ************** */
+ #messages {
+  background-color: #ffe5e5;
+  color: #b30000; /* deep red text */
+  border: 1px solid #ff9999;
+  padding: 12px 16px;
+  margin: 10px 0;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* *************** 
      Hero
- ***************/
+ ************** */
 
 .hero { 
   padding: .25rem 0 1rem; 
@@ -228,10 +241,10 @@ main {
   border-radius: 8px;
 }
 
-/**************** 
+/* *************** 
  Reviews & Upgrades
  (Content Columns)
- ***************/
+ ************** */
 
 .columns {
   display: grid;
@@ -288,9 +301,9 @@ main {
   text-decoration: underline;
 }
 
-/********************
+/* *******************
   Inventory Cards
-********************/
+******************* */
 
 /* The grid that holds all cards */
 #inv-display {
@@ -355,9 +368,9 @@ main {
   transition: 0.18s ease;
 }
 
-/********************
+/* *******************
   Vehicle Detail View
-********************/
+******************* */
 
 .vehicle-detail {
   display: grid;
@@ -408,9 +421,9 @@ main {
   line-height: 1.6;
 }
 
-/**************** 
+/* *************** 
       Footer
- ***************/
+ ************** */
 
 footer {
   display: flex;
@@ -422,11 +435,11 @@ footer {
   border-radius: 0 0 10px 10px;
 }
 
-/**************** 
+/* *************** 
     Media - Larger 
     Screens/ 
     Responsive
- ***************/
+ ************** */
 
 @media (min-width: 900px) {
   #wrapper { 
