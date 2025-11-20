@@ -1,6 +1,6 @@
-/* *************** 
-    Base / Reset 
-************** */
+/* **************
+ * Base / Reset 
+ * ************* */
 *,
 *:before,
 *:after {
@@ -8,8 +8,8 @@
 }
 
 /* *************** 
-  Tokens / Theme
- ************** */
+ * Tokens / Theme
+ * ************* */
 
 :root {
   --ink: #111827;
@@ -24,8 +24,8 @@
 }
 
 /* *************** 
-   Document Body
- ************** */
+ * Document Body
+ * ************* */
 
 html, body { 
   height: 100%; 
@@ -44,8 +44,8 @@ body {
 }
 
 /* *************** 
-   Layout Wrapper
- ************** */
+ * Layout Wrapper
+ * ************* */
 
 #wrapper {
   max-width: 960px;
@@ -59,8 +59,8 @@ body {
 }
 
 /* *************** 
-      Links
- ************** */
+ *    Links
+ * ************* */
  
 a { 
   color: var(--accent);
@@ -68,8 +68,8 @@ a {
 }
 
 /* *************** 
-     Header
- ************** */
+ *   Header
+ * ************* */
 
 #top-header {
   display: flex;
@@ -103,8 +103,8 @@ a {
 }
 
 /* *************** 
-    Main nav 
-************** */
+ *   Main nav 
+ * ************* */
 
 nav {
   background: var(--nav);
@@ -142,8 +142,8 @@ nav a:hover, nav a:focus {
 }
 
 /* *************** 
-     Welcome
- ************** */
+ *   Welcome
+ * ************* */
 
 main {
   padding: 1rem;
@@ -154,8 +154,8 @@ main {
 #home { padding: 1rem; }
 
 /* *************** 
-     Welcome
- ************** */
+ *   Welcome
+ * ************* */
  #messages {
   background-color: #ffe5e5;
   color: #b30000; /* deep red text */
@@ -167,8 +167,8 @@ main {
 }
 
 /* *************** 
-     Hero
- ************** */
+ *    Hero
+ * ************* */
 
 .hero { 
   padding: .25rem 0 1rem; 
@@ -242,9 +242,9 @@ main {
 }
 
 /* *************** 
- Reviews & Upgrades
- (Content Columns)
- ************** */
+ * Reviews & Upgrades
+ * (Content Columns)
+ * ************* */
 
 .columns {
   display: grid;
@@ -302,8 +302,8 @@ main {
 }
 
 /* *******************
-  Inventory Cards
-******************* */
+ * Inventory Cards
+ * ****************** */
 
 /* The grid that holds all cards */
 #inv-display {
@@ -369,8 +369,8 @@ main {
 }
 
 /* *******************
-  Vehicle Detail View
-******************* */
+ * Vehicle Detail View
+ * ****************** */
 
 .vehicle-detail {
   display: grid;
@@ -422,8 +422,8 @@ main {
 }
 
 /* *************** 
-      Footer
- ************** */
+ *    Footer
+ * ************* */
 
 footer {
   display: flex;
@@ -436,10 +436,10 @@ footer {
 }
 
 /* *************** 
-    Media - Larger 
-    Screens/ 
-    Responsive
- ************** */
+ *  Media - Larger 
+ *  Screens/ 
+ *  Responsive
+ * ************* */
 
 @media (min-width: 900px) {
   #wrapper { 
