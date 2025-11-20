@@ -13,4 +13,4 @@ utilities.handleErrors(invController.buildByClassificationId)
 router.get("/detail/:inv_id", utilities.handleErrors(invController.buildDetailView)
 )
 
-module.exports = router;
+module.exports = router

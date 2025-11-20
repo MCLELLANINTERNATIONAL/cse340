@@ -88,6 +88,90 @@ a {
   text-decoration: underline; 
 }
 
+/* ===============================
+   Login Page Styles (Pop-up Box)
+================================== */
+
+#login-page {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background: #243447;          /* dark blue like example */
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  max-width: 520px;
+  width: 100%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-form label {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.login-form input {
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.login-btn {
+  margin: 1rem auto 0;
+  padding: 0.6rem 2.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 999px;   /* pill-shaped like the image */
+  background: #ffffff;
+  color: #243447;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #e5e7eb;
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.signup-text a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Flash message (optional) */
+.flash-message {
+  background: #ffe5e5;
+  color: #8b0000;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin: 0 0 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Hide h1 visually if you use visually-hidden */
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
 /* *************** Main nav ************* */
 
 nav {
