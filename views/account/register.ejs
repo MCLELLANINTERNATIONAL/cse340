@@ -1,0 +1,57 @@
+<h1><%= title %></h1>
+
+<% if (typeof messages === "function" && messages()) { %>
+  <div class="flash-message">
+    <%- messages() %>
+  </div>
+<% } %>
+
+<section id="register-page">
+  <div class="register-container">
+    <form action="/account/register" method="post" class="register-form">
+
+      <label for="account_firstname">First name</label>
+      <input
+        type="text"
+        id="account_firstname"
+        name="account_firstname"
+        required
+        value="<%= typeof account_firstname !== 'undefined' ? account_firstname : '' %>"
+      >
+
+      <label for="account_lastname">Last name</label>
+      <input
+        type="text"
+        id="account_lastname"
+        name="account_lastname"
+        required
+        value="<%= typeof account_lastname !== 'undefined' ? account_lastname : '' %>"
+      >
+
+      <label for="account_email">Email address</label>
+      <input
+        type="email"
+        id="account_email"
+        name="account_email"
+        required
+        value="<%= typeof account_email !== 'undefined' ? account_email : '' %>"
+      >
+
+      <label for="account_password">Password</label>
+      <input
+        type="password"
+        id="account_password"
+        name="account_password"
+        required
+        minlength="12"
+        pattern="(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*]).{12,}"
+      >
+      <p class="password-hint">
+        Password must be at least 12 characters and include 1 capital letter,
+        1 number, and 1 special character.
+      </p>
+
+      <button type="submit" class="register-btn">Register</button>
+    </form>
+  </div>
+</section>

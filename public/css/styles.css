@@ -172,6 +172,72 @@ a {
   left: -9999px;
 }
 
+/* ===============================
+   Registration Page Styles
+================================== */
+
+#register-page {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+.register-container {
+  background: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  max-width: 520px;
+  width: 100%;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.register-form label {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.register-form input {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 4px;
+  border: 2px solid #111827;
+  font-size: 1rem;
+}
+
+.password-hint {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-top: 0.35rem;
+  margin-bottom: 0.25rem;
+}
+
+.register-btn {
+  margin-top: 1rem;
+  align-self: flex-start;
+  padding: 0.7rem 2.4rem;
+  border: none;
+  border-radius: 999px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.register-btn:hover {
+  background: #1d4ed8;
+}
+
 /* *************** Main nav ************* */
 
 nav {
