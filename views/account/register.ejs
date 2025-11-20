@@ -40,18 +40,23 @@
       <label for="account_password">Password</label>
       <input
         type="password"
-        id="account_password"
+        id="pword"
         name="account_password"
         required
         minlength="12"
         pattern="(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*]).{12,}"
-      >
-      <p class="password-hint">
+    >
+
+    <button type="button" id="pswdBtn">Show Password</button>
+
+    <p class="password-hint">
         Password must be at least 12 characters and include 1 capital letter,
         1 number, and 1 special character.
-      </p>
+    </p>
 
-      <button type="submit" class="register-btn">Register</button>
+    <button type="submit" class="register-btn">Register</button>
     </form>
   </div>
 </section>
+
+<script src="/js/register.js"></script>

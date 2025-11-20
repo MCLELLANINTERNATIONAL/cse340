@@ -214,6 +214,16 @@ a {
   font-size: 1rem;
 }
 
+#pswdBtn {
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 2px;
+  margin-top: 1em;
+  font-size: small;
+  width: 7em;
+  text-align: center;
+}
+
 .password-hint {
   font-size: 0.9rem;
   color: #4b5563;
