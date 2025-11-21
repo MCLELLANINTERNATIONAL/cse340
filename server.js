@@ -16,6 +16,7 @@ const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute") 
+const bodyParser = require("body-parser")
 
 /* ***********************
  * Middleware
@@ -37,6 +38,10 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+// for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 /* ***********************
  * View Engine and Templates
