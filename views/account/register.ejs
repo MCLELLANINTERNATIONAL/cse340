@@ -1,10 +1,13 @@
 <h1><%= title %></h1>
 
-<% if (typeof messages === "function" && messages()) { %>
-  <div class="flash-message">
-    <%- messages() %>
-  </div>
-<% } %>
+<% if (typeof messages === "function") { 
+  const flashHtml = messages();
+  if (flashHtml) { %>
+<div class="flash-message">
+ <%- flashHtml %>
+</div>
+<%   } 
+} %>
 
 <section id="register-page">
   <div class="register-container">

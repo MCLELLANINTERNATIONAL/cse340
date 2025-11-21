@@ -1,11 +1,16 @@
 <h1 class="visually-hidden"><%= title %></h1>
 
+<% if (typeof messages === "function") { 
+  const flashHtml = messages();
+  if (flashHtml) { %>
+<div class="flash-message">
+ <%- flashHtml %>
+</div>
+<%   } 
+} %>
+
 <section id="login-page">
   <div class="login-container">
-    <% if (locals.notice) { %>
-      <div class="flash-message"><%= notice %></div>
-    <% } %>
-
     <form action="/account/login" method="post" class="login-form">
       <label for="account_email">Email:</label>
       <input 
