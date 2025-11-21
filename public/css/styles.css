@@ -155,7 +155,7 @@ a {
   text-decoration: underline;
 }
 
-/* Flash message (optional) */
+/* Flash message */
 .flash-message {
   background: #ffe5e5;
   color: #8b0000;
@@ -164,6 +164,8 @@ a {
   margin: 0 0 1rem;
   font-weight: bold;
   text-align: center;
+  text-decoration: none;
+  border: none;
 }
 
 /* Hide h1 visually if you use visually-hidden */
@@ -253,8 +255,7 @@ a {
   color: red;
   font-weight: bold;
   margin: 1rem 0;
-  padding: 0.5rem;
-  
+  padding: 0.5rem; 
 }
 
 .notice li {
