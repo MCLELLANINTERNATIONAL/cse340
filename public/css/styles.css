@@ -248,6 +248,19 @@ a {
   background: #1d4ed8;
 }
 
+/* Validation error messages (red text) */
+.notice {
+  color: red;
+  font-weight: bold;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  
+}
+
+.notice li {
+  margin-bottom: 0.25rem;
+}
+
 /* *************** Main nav ************* */
 
 nav {
