@@ -159,11 +159,10 @@ a {
 .flash-message {
   background: #ffe5e5;
   color: #8b0000;
-  padding: 0.75rem;
-  border-radius: 6px;
-  margin: 0 0 1rem;
-  font-weight: bold;
-  text-align: center;
+  margin: 10px 0;
+  padding: 12px 16px;
+  font-weight: 600;
+  text-align: ;
   text-decoration: none;
   border: none;
 }
@@ -253,9 +252,9 @@ a {
 /* Validation error messages (red text) */
 .notice {
   color: red;
-  font-weight: bold;
-  margin: 1rem 0;
-  padding: 0.5rem;
+  font-weight: 600;
+  margin: 10px 0;
+  padding: 12px 16px;
   text-decoration: none;
   border: none;
 }
@@ -317,7 +316,6 @@ main {
   color: #b30000; /* deep red text */
   padding: 12px 16px;
   margin: 10px 0;
-  border-radius: 6px;
   font-weight: 600;
   text-decoration: none;
   border: none;
