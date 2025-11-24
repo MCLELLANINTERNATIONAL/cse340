@@ -158,7 +158,7 @@ a {
 /* Flash message */
 .flash-message {
   background: #ffe5e5;
-  color: #8b0000;
+  color: C70000;
   margin: 10px 0;
   padding: 12px 16px;
   font-weight: 600;
@@ -250,7 +250,7 @@ a {
 
 /* Validation error messages (red text) */
 .notice {
-  color: red;
+  color: C70000;
   font-weight: 600;
   margin: 10px 0;
   padding: 12px 16px;
@@ -312,7 +312,7 @@ main {
 /* *************** Welcome ************* */
  #messages {
   background-color: #ffe5e5;
-  color: #b30000; /* deep red text */
+  color: C70000; /* deep red text */
   padding: 12px 16px;
   margin: 10px 0;
   font-weight: 600;
