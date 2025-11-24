@@ -39,6 +39,18 @@ router.get(
     utilities.handleErrors(invController.deleteClassification)
 )  
 
+router.post(
+    "/delete-classification/:classificationId",
+    utilities.handleErrors(invController.deleteClassification)
+)
+
+// Delete classification by NAME (POST)
+router.post(
+    "/delete-classification-by-name",
+    utilities.handleErrors(invController.deleteClassificationByName)
+  )
+  
+  
 // Route to build Add Inventory view
 router.get(
     "/add-inventory",

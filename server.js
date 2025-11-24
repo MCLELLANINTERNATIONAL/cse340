@@ -71,6 +71,8 @@ app.use(async (req, res, next) => {
 })
 // Inventory routes
 app.use("/inv", inventoryRoute)
+app.use(express.static("public"))
+
 
 /* ***********************
     Express Error Handler

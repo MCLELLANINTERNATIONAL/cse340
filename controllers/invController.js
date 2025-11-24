@@ -9,10 +9,13 @@ const invCont = {}
 invCont.buildManagement = async function (req, res, next) {
   try {
     let nav = await utilities.getNav()
+    const classData = await invModel.getClassifications()
+    
     res.render("inventory/management", {
       title: "Vehicle Management",
       nav,
       errors: null,
+      classifications: classData.rows,
     })
   } catch (err) {
     console.error("buildManagement error", err)
@@ -106,11 +109,14 @@ invCont.addClassification = async function (req, res, next) {
     if (result && result.rowCount > 0) {
       // Success: rebuild nav so the new classification shows immediately
       nav = await utilities.getNav()
+      const classData = await invModel.getClassifications()
+
       req.flash("notice", "Classification added successfully.")
       return res.status(201).render("inventory/management", {
         title: "Vehicle Management",
         nav,
         errors: null,
+        classifications: classData.rows,
       })
     } else {
       // Failure: return to add-classification with sticky data
@@ -136,7 +142,6 @@ invCont.buildAddInventory = async function (req, res, next) {
   try {
     let nav = await utilities.getNav()
     const classificationList = await utilities.buildClassificationList()
-
     res.render("inventory/add-inventory", {
       title: "Add New Vehicle",
       nav,
@@ -206,6 +211,8 @@ invCont.addInventory = async function (req, res, next) {
     if (result && result.rowCount > 0) {
       // success – show management with message and updated nav
       nav = await utilities.getNav()
+      const classData = await invModel.getClassifications()
+      
       req.flash(
         "notice",
         `Successfully added vehicle: ${inv_year} ${inv_make} ${inv_model}.`
@@ -214,6 +221,7 @@ invCont.addInventory = async function (req, res, next) {
         title: "Vehicle Management",
         nav,
         errors: null,
+        classifications: classData.rows
       })
     } else {
       // failure – re-render add-inventory, sticky
@@ -311,6 +319,48 @@ invCont.deleteClassification = async function (req, res, next) {
     })
   } catch (err) {
     console.error("deleteClassification error", err)
+    next(err)
+  }
+}
+
+invCont.deleteClassificationByName = async function (req, res, next) {
+  try {
+    const { classification_name } = req.body
+    let nav = await utilities.getNav()
+
+    const result = await invModel.deleteClassificationByName(classification_name)
+    const classData = await invModel.getClassifications()
+
+    if (result?.error) {
+      req.flash("notice", result.error)
+      return res.status(400).render("inventory/management", {
+        title: "Vehicle Management",
+        nav,
+        errors: null,
+        classifications: classData.rows,
+      })
+    }
+
+    if (result) {
+      nav = await utilities.getNav()
+      req.flash("notice", `Classification "${classification_name}" deleted successfully.`)
+      return res.status(200).render("inventory/management", {
+        title: "Vehicle Management",
+        nav,
+        errors: null,
+        classifications: classData.rows,
+      })
+    }
+
+    req.flash("notice", "Classification delete failed.")
+    return res.status(500).render("inventory/management", {
+      title: "Vehicle Management",
+      nav,
+      errors: null,
+      classifications: classData.rows,
+    })
+  } catch (err) {
+    console.error("deleteClassificationByName error", err)
     next(err)
   }
 }

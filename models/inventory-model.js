@@ -132,6 +132,39 @@ async function deleteClassification(classification_id) {
   }
 }
 
+// Get classification row by name
+async function getClassificationByName(classification_name) {
+  try {
+    const sql = `
+      SELECT classification_id
+      FROM public.classification
+      WHERE classification_name = $1
+    `
+    const data = await pool.query(sql, [classification_name])
+    return data.rows[0]  // undefined if not found
+  } catch (error) {
+    console.error("getClassificationByName error", error)
+    throw error
+  }
+}
+
+/* *****************************
+*   Delete classification by NAME
+* *************************** */
+async function deleteClassificationByName(classification_name) {
+  try {
+    const cls = await getClassificationByName(classification_name)
+    if (!cls) {
+      return { error: "Classification not found." }
+    }
+
+    // Reuse existing delete by ID logic
+    return await deleteClassification(cls.classification_id)
+  } catch (error) {
+    console.error("deleteClassificationByName error", error)
+    throw error
+  }
+}
 
 module.exports = {
   getClassifications, 
@@ -139,5 +172,6 @@ module.exports = {
   getVehicleById,
   addClassification,
   addInventory,
-  deleteClassification
+  deleteClassification,
+  deleteClassificationByName, 
 }
