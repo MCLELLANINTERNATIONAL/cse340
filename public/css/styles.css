@@ -566,9 +566,7 @@ main {
   line-height: 1.6;
 }
 
-/* ==========================================
-   Inventory Management Page
-========================================== */
+/* ================= Inventory Management Page =========================== */
 
 #inv-management {
   padding: 2rem;
@@ -582,7 +580,7 @@ main {
   border-radius: 12px;
   width: 100%;
   max-width: 600px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 18px rgba(54, 174, 230, 0.915);
   text-align: center;
 }
 
@@ -620,18 +618,6 @@ main {
 /* Optional: space for flash message */
 .flash-message {
   margin-bottom: 1.5rem;
-}
-
-/* *************** Add Inventory Form ************* */
-
-.add-inventory-form input:required:valid,
-.add-inventory-form textarea:required:valid {
-  border: 2px solid #16a34a; /* green border when valid */
-}
-
-.add-inventory-form input:required:invalid,
-.add-inventory-form textarea:required:invalid {
-  border: 2px solid #dc2626; /* red border when invalid */
 }
 
 /* =========== Add Classification Form Page ============================= */
@@ -770,6 +756,30 @@ main {
   background: #1d4ed8;
 }
 
+/* *************** Add Inventory and Add Classification Form ************* */
+
+/* VALID → light green background */
+.add-inventory-form input:required:valid,
+.add-inventory-form textarea:required:valid,
+.add-classification-form input:required:valid,
+.add-classification-form textarea:required:valid {
+  background-color: #d1fae5; /* light green */
+  border: 1px solid #a7f3d0; /* optional softer border */
+}
+
+/* INVALID → light red/pink background */
+.add-inventory-form input:required:invalid,
+.add-inventory-form textarea:required:invalid,
+.add-classification-form input:required:invalid
+.add-classification-form textarea:required:invalid {
+  background-color: #fee2e2; /* light red */
+  border: 1px solid #fecaca; /* optional softer border */
+}
+
+.add-inventory-form input,
+.add-inventory-form textarea {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
 
 /* *************** Footer ************* */
 
