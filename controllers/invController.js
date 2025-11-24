@@ -242,4 +242,77 @@ invCont.addInventory = async function (req, res, next) {
   }
 }
 
+/* *****************************
+ *  Delete classification by ID
+ * *************************** */
+async function deleteClassification(classification_id) {
+  try {
+    // Check if inventory items exist for this classification
+    const invCheck = await pool.query(
+      `SELECT inv_id FROM public.inventory WHERE classification_id = $1`,
+      [classification_id]
+    )
+
+    if (invCheck.rows.length > 0) {
+      return { error: "Cannot delete classification with existing inventory." }
+    }
+
+    const sql = `
+      DELETE FROM public.classification
+      WHERE classification_id = $1
+      RETURNING *;
+    `
+    const data = await pool.query(sql, [classification_id])
+
+    return data.rows[0]
+  } catch (error) {
+    console.error("deleteClassification error", error)
+    throw error
+  }
+}
+
+/* ***************************
+ *  Delete Classification
+ * ************************** */
+invCont.deleteClassification = async function (req, res, next) {
+  try {
+    const classification_id = req.params.classificationId
+    let nav = await utilities.getNav()
+
+    const result = await invModel.deleteClassification(classification_id)
+
+    // If model returned an error object (e.g., has inventory)
+    if (result?.error) {
+      req.flash("notice", result.error)
+      return res.status(400).render("inventory/management", {
+        title: "Vehicle Management",
+        nav,
+        errors: null,
+      })
+    }
+
+    // Successful delete
+    if (result) {
+      nav = await utilities.getNav() // rebuild nav so the deleted classification disappears
+      req.flash("notice", "Classification deleted successfully.")
+      return res.status(200).render("inventory/management", {
+        title: "Vehicle Management",
+        nav,
+        errors: null,
+      })
+    }
+
+    // Fallback failure
+    req.flash("notice", "Classification delete failed.")
+    return res.status(500).render("inventory/management", {
+      title: "Vehicle Management",
+      nav,
+      errors: null,
+    })
+  } catch (err) {
+    console.error("deleteClassification error", err)
+    next(err)
+  }
+}
+
 module.exports = invCont

@@ -32,7 +32,12 @@ router.post(
     invValidate.classificationRules(),
     invValidate.checkClassData,
     utilities.handleErrors(invController.addClassification)
-  )
+)
+
+router.get(
+    "/delete-classification/:classificationId",
+    utilities.handleErrors(invController.deleteClassification)
+)  
 
 // Route to build Add Inventory view
 router.get(

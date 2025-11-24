@@ -1,3 +1,4 @@
+/*const { deleteClassification } = require("../controllers/invController")*/
 const pool = require("../database/")
 
 /* ***************************
@@ -103,10 +104,40 @@ async function addInventory(
   }
 }
 
+/* *****************************
+*   Delete classification by ID
+* *************************** */
+async function deleteClassification(classification_id) {
+  try {
+    // Check if any vehicles use this classification
+    const invCheck = await pool.query(
+      `SELECT inv_id FROM public.inventory WHERE classification_id = $1`,
+      [classification_id]
+    )
+
+    if (invCheck.rows.length > 0) {
+      return { error: "Cannot delete classification with existing inventory." }
+    }
+
+    const sql = `
+      DELETE FROM public.classification
+      WHERE classification_id = $1
+      RETURNING *;
+    `
+    const data = await pool.query(sql, [classification_id])
+    return data.rows[0]
+  } catch (error) {
+    console.error("deleteClassification error", error)
+    throw error
+  }
+}
+
+
 module.exports = {
   getClassifications, 
   getInventoryByClassificationId,
   getVehicleById,
   addClassification,
-  addInventory
+  addInventory,
+  deleteClassification
 }
