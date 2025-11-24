@@ -777,7 +777,9 @@ main {
 }
 
 .add-inventory-form input,
-.add-inventory-form textarea {
+.add-inventory-form textarea,
+.add-classification-form input:required:invalid
+.add-classification-form textarea:required:invalid {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
