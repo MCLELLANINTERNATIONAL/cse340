@@ -1,0 +1,66 @@
+<h1><%= title %></h1>
+
+<% if (typeof messages === "function") { 
+  const flashHtml = messages();
+  if (flashHtml) { %>
+    <div class="flash-message">
+      <%- flashHtml %>
+    </div>
+<%  } } %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<section id="add-inventory-page">
+  <div class="add-inventory-panel">
+    <p class="add-inventory-note">ALL FIELDS ARE REQUIRED.</p>
+
+    <form action="/inv/add-inventory" method="post" class="add-inventory-form">
+      <label for="classificationList">Classification</label>
+      <%- classificationList %>
+
+      <label for="inv_make">Make</label>
+      <input id="inv_make" name="inv_make"
+             value="<%= inv_make %>" required>
+
+      <label for="inv_model">Model</label>
+      <input id="inv_model" name="inv_model"
+             value="<%= inv_model %>" required>
+
+      <label for="inv_year">Year (4 digits)</label>
+      <input id="inv_year" name="inv_year"
+             value="<%= inv_year %>" required>
+
+      <label for="inv_description">Description</label>
+      <textarea id="inv_description" name="inv_description" required>
+<%= inv_description %></textarea>
+
+      <label for="inv_image">Image Path</label>
+      <input id="inv_image" name="inv_image"
+             value="<%= inv_image %>" required>
+
+      <label for="inv_thumbnail">Thumbnail Path</label>
+      <input id="inv_thumbnail" name="inv_thumbnail"
+             value="<%= inv_thumbnail %>" required>
+
+      <label for="inv_price">Price</label>
+      <input id="inv_price" name="inv_price"
+             value="<%= inv_price %>" required>
+
+      <label for="inv_miles">Miles</label>
+      <input id="inv_miles" name="inv_miles"
+             value="<%= inv_miles %>" required>
+
+      <label for="inv_color">Color</label>
+      <input id="inv_color" name="inv_color"
+             value="<%= inv_color %>" required>
+
+      <button type="submit">Add Vehicle</button>
+    </form>
+  </div>
+</section>

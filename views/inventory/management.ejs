@@ -1,0 +1,25 @@
+<h1><%= title %></h1>
+
+<% if (typeof messages === "function") { 
+  const flashHtml = messages();
+  if (flashHtml) { %>
+    <div class="flash-message">
+      <%- flashHtml %>
+    </div>
+<%  } 
+} %>
+
+<main id="inv-management">
+  <section class="inv-management-panel">
+    <p>Use the tools below to manage vehicle classifications and inventory.</p>
+
+    <ul class="inv-management-actions">
+      <li>
+        <a href="/inv/add-classification">Add New Classification</a>
+      </li>
+      <li>
+        <a href="/inv/add-inventory">Add New Vehicle</a>
+      </li>
+    </ul>
+  </section>
+</main>

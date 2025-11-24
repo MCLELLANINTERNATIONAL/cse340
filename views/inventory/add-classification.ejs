@@ -1,0 +1,43 @@
+<h1><%= title %></h1>
+
+<% if (typeof messages === "function") { 
+  const flashHtml = messages();
+  if (flashHtml) { %>
+    <div class="flash-message">
+      <%- flashHtml %>
+    </div>
+<%  } } %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<section id="add-classification-page">
+    <div class="inv-form-panel">
+    <p class="form-note">FIELD IS REQUIRED.</p>
+
+    <form action="/inv/add-classification" method="post" class="add-classification-form">
+        <label for="classification_name">Classification Name</label>
+        <small class="field-hint">
+            NAME MUST BE ALPHABETIC CHARACTERS ONLY.
+        </small>
+
+        <input
+            type="text"
+            id="classification_name"
+            name="classification_name"
+            required
+            pattern="^[A-Za-z0-9]+$"
+            value="<%= typeof classification_name !== 'undefined'
+                    ? classification_name
+                    : '' %>"
+        />
+
+        <button type="submit" class="btn-primary">Add Classification</button>
+    </form>
+  </div> 
+</section>
