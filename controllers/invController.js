@@ -76,7 +76,7 @@ invCont.buildDetailView = async function (req, res, next) {
 }
 
 /* ****************************************
- *  Deliver add inventory view
+ *  Deliver add Classification view
   * *************************************** */
 invCont.buildAddClassification = async function (req, res, next) {
   try {
@@ -188,7 +188,7 @@ invCont.addInventory = async function (req, res, next) {
     const safeThumbnail =
       inv_thumbnail && inv_thumbnail.trim() !== ""
         ? inv_thumbnail.trim()
-        : "images/vehicles/no-image-tn.png"
+        : "/images/vehicles/no-image-tn.png"
 
     const result = await invModel.addInventory(
       inv_make,
