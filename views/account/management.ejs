@@ -1,0 +1,21 @@
+<h1><%= title %></h1>
+
+<% if (typeof messages === "function") { 
+  const flashHtml = messages();
+  if (flashHtml) { %>
+    <div class="flash-message">
+      <%- flashHtml %>
+    </div>
+<%  } 
+} %>
+
+<main id="account-management">
+  <section class="account-panel">
+    <p class="success-message">You’re logged in</p>
+
+    <ul class="account-actions">
+      <li><a href="/account/logout">Logout</a></li>
+      <li><a href="/inv/management">Vehicle Management</a></li>
+    </ul>
+  </section>
+</main>

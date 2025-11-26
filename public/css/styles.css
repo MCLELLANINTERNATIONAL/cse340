@@ -902,6 +902,47 @@ main {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
+#account-management {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.account-panel {
+  background: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 6px 18px rgba(54, 174, 230, 0.915);
+  text-align: center;
+}
+
+.account-actions {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.account-actions li a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background-color: var(--accent);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.account-actions li a:hover {
+  background-color: var(--accent-2);
+}
+
+
 /* *************** Footer ************* */
 
 footer {
@@ -970,6 +1011,11 @@ footer {
   .vehicle-detail {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
     gap: 2rem;
+  }
+
+  .success-message{
+    color: rgb(7, 221, 50);
+    font-size: 1.2rem;
   }
 }
 
