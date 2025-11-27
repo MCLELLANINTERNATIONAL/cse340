@@ -97,7 +97,8 @@ async function accountLogin(req, res) {
     return
   }
   try {
-    if (await bcrypt.compare(account_password, accountData.account_password)) {
+    if (await bcrypt.compare(account_password, accountData.account_password)) 
+    {
       delete accountData.account_password
       const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
       if(process.env.NODE_ENV === 'development') {
@@ -122,12 +123,20 @@ async function accountLogin(req, res) {
 }
 
 // Build account management view
+/* ****************************************
+ *  Build account management view
+ * ************************************ */
 async function buildAccountManagement(req, res) {
   let nav = await utilities.getNav()
+
+  // accountData was set in Util.checkJWTToken
+  const accountData = res.locals.accountData
+
   res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,
+    accountData,  // Pass data to the view
   })
 }
 

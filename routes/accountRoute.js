@@ -33,15 +33,13 @@ router.post(
   "/login",
   regValidate.loginRules(),
   regValidate.checkLoginData,
-  utilities.handleErrors(accountController.loginAccount)
-  /*(req, res) => {
-    res.status(200).send('login process')
-  }*/
+  utilities.handleErrors(accountController.accountLogin)
 )
 
 // Default Account Management View (after successful login)
 router.get(
   "/",
+  utilities.checkLogin, 
   utilities.handleErrors(accountController.buildAccountManagement)
 )
 

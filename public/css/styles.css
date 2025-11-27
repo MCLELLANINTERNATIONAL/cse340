@@ -918,6 +918,13 @@ main {
   text-align: center;
 }
 
+.login-notice {
+  font-size: 1.2rem;
+  color: #15803d; /* green */
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
 .account-actions {
   list-style: none;
   padding: 0;
@@ -941,7 +948,6 @@ main {
 .account-actions li a:hover {
   background-color: var(--accent-2);
 }
-
 
 /* *************** Footer ************* */
 

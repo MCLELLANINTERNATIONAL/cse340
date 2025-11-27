@@ -11,11 +11,19 @@
 
 <main id="account-management">
   <section class="account-panel">
-    <p class="success-message">You’re logged in</p>
+    <h2>
+      Welcome <%= accountData && accountData.account_firstname 
+        ? accountData.account_firstname 
+        : "New" %>
+    </h2>
 
-    <ul class="account-actions">
-      <li><a href="/account/logout">Logout</a></li>
-      <li><a href="/inv/management">Vehicle Management</a></li>
-    </ul>
+    <p class="login-notice">You're logged in.</p>
+
+    <p>
+      <a href="/account/edit" class="account-edit-link">
+        Edit Account Information
+      </a>
+    </p>
   </section>
 </main>
+
