@@ -162,6 +162,10 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList
 }
 
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
 Util.checkJWTToken = (req, res, next) => {
   if (req.cookies.jwt) {
     jwt.verify(
@@ -169,7 +173,7 @@ Util.checkJWTToken = (req, res, next) => {
       process.env.ACCESS_TOKEN_SECRET,
       function (err, accountData) {
         if (err) {
-          req.flash("notice", "Please log in to access resources.")
+          req.flash("notice", "Please log in")
           res.clearCookie("jwt")
           return res.redirect("/account/login")
         } 
