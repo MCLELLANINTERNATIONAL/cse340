@@ -21,6 +21,18 @@
         <a href="/inv/add-inventory">Add New Vehicle</a>
       </li>
     </ul>
+
+    <h2>Manage Inventory</h2>
+    <p>Select a classification from the list to see the items belonging to that classification.</p>
+
+    <% if (typeof classificationList !== "undefined") { %>
+      <%- classificationList %>
+    <% } %>
+
+    <table id="inventoryDisplay"></table>
+
+    <noscript>JavaScript must be enabled to use this page.</noscript>
+
     <ul class="classification-list">
       <% if (typeof classifications !== "undefined" && classifications.length > 0) { %>
         <% classifications.forEach(c => { %>
@@ -40,21 +52,23 @@
       <% } else { %>
         <li>No classifications available.</li>
       <% } %>
-      </ul>
+    </ul>
 
-      <h2>Delete Classification by Name</h2>
-      <form class="delete-by-name-form" action="/inv/delete-classification-by-name" method="post">
-        <label for="classification_name">Classification Name</label>
-        <input 
-          type="text" 
-          id="classification_name" 
-          name="classification_name" 
-          required 
-          minlength="3"
-        >
-        <button type="submit" onclick="return confirm('Deleted this classification by name?')">
-          Delete by Name
-        </button>
-      </form>
+    <h2>Delete Classification by Name</h2>
+    <form class="delete-by-name-form" action="/inv/delete-classification-by-name" method="post">
+      <label for="classification_name">Classification Name</label>
+      <input 
+        type="text" 
+        id="classification_name" 
+        name="classification_name" 
+        required 
+        minlength="3"
+      >
+      <button type="submit" onclick="return confirm('Deleted this classification by name?')">
+        Delete by Name
+      </button>
+    </form>
   </section> 
 </main>
+
+<script src="/js/inventory.js"></script>

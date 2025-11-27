@@ -1,4 +1,3 @@
-// utilities/inventory-validation.js
 const utilities = require(".")
 const { body, validationResult } = require("express-validator")
 
@@ -69,12 +68,14 @@ invValidate.inventoryRules = () => [
       .withMessage("Miles must be an integer."),
     body("inv_color").trim().escape().notEmpty().withMessage("Please provide a color."),
     body("classification_id").notEmpty().withMessage("Please choose a classification."),
-  ]
-  
-  /* ******************************
-   * Check inventory data and return errors or continue
-   * ***************************** */
-  invValidate.checkInvData = async (req, res, next) => {
+]
+
+
+/* ******************************
+ * Check inventory data and return errors or continue
+ * (for Add Inventory)
+ * ***************************** */
+invValidate.checkInvData = async (req, res, next) => {
     const {
       inv_make,
       inv_model,
@@ -113,7 +114,58 @@ invValidate.inventoryRules = () => [
     }
   
     next()
+}  
+
+
+/* ******************************
+ * Check update inventory data and return errors
+ * (for Edit Inventory)
+ * ***************************** */
+invValidate.checkUpdateData = async (req, res, next) => {
+    const {
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+      inv_id   // <-- added
+    } = req.body
+  
+    let errors = validationResult(req)
+  
+    if (!errors.isEmpty()) {
+      let nav = await utilities.getNav()
+      const classificationSelect = 
+        await utilities.buildClassificationList(classification_id)
+
+      // build title exactly like the controller
+      const itemName = `${inv_make} ${inv_model}`
+
+      return res.render("inventory/edit-inventory", {
+        errors,
+        title: "Edit " + itemName,
+        nav,
+        classificationSelect,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id,
+        inv_id         // <-- send back hidden primary key
+      })
+    }
+  
+    next()
 }
 
 module.exports = invValidate
-  

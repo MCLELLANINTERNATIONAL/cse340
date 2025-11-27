@@ -1043,3 +1043,108 @@ footer {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* ==== Edit Inventory Page Layout ==== */
+
+#edit-inventory-page {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0 3rem;
+}
+
+/* Blue “card” in the center */
+.edit-inventory-panel {
+  background: #34a9d9;          /* main blue */
+  border-radius: 8px;
+  padding: 1.5rem 2rem 2rem;
+  max-width: 650px;
+  width: 100%;
+  box-shadow: 0 0 0 3px #e5f5fb inset; /* inner border effect */
+}
+
+/* Top note: ALL FIELDS ARE REQUIRED */
+.edit-inventory-note {
+  margin: 0 0 1rem;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #f5faff;
+}
+
+/* ==== Form styling ==== */
+
+.edit-inventory-form {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  padding: 1.2rem 1.5rem 1.5rem;
+}
+
+/* Labels */
+.edit-inventory-form label {
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: #0e3750;
+}
+
+/* Inputs, select, textarea */
+.edit-inventory-form input[type="text"],
+.edit-inventory-form input[type="number"],
+.edit-inventory-form input[type="email"],
+.edit-inventory-form input[type="password"],
+.edit-inventory-form select,
+.edit-inventory-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.45rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid #b1d9ea;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+}
+
+/* Textarea specific */
+.edit-inventory-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Focus */
+.edit-inventory-form input:focus,
+.edit-inventory-form select:focus,
+.edit-inventory-form textarea:focus {
+  outline: none;
+  border-color: #1779b8;
+  box-shadow: 0 0 0 2px rgba(23, 121, 184, 0.25);
+}
+
+/* Submit button */
+.edit-inventory-form button[type="submit"],
+.edit-inventory-form input[type="submit"] {
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.7rem;
+  border-radius: 4px;
+  border: none;
+  background: #0f3554;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-inventory-form button[type="submit"]:hover,
+.edit-inventory-form input[type="submit"]:hover {
+  background: #0b2840;
+}
+
+/* Small screen tweaks */
+@media (max-width: 600px) {
+  .edit-inventory-panel {
+    margin: 0 0.75rem;
+    padding: 1.25rem 1rem 1.5rem;
+  }
+
+  .edit-inventory-form {
+    padding: 1rem;
+  }
+}

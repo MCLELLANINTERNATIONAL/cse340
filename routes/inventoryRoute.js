@@ -12,12 +12,21 @@ router.get(
 )
 
 // Route to build inventory by classification view
-router.get("/type/:classificationId",
-utilities.handleErrors(invController.buildByClassificationId)
+router.get(
+    "/type/:classificationId",
+    utilities.handleErrors(invController.buildByClassificationId)
 )
 
 // Route to build individual vehicle detail view
-router.get("/detail/:inv_id", utilities.handleErrors(invController.buildDetailView)
+router.get(
+    "/detail/:inv_id",
+    utilities.handleErrors(invController.buildDetailView)
+)
+
+// Route to build edit inventory view (Modify link)
+router.get(
+    "/edit/:inv_id",
+    utilities.handleErrors(invController.editInventoryView)
 )
 
 // Route to build Add Classification view
@@ -48,8 +57,7 @@ router.post(
 router.post(
     "/delete-classification-by-name",
     utilities.handleErrors(invController.deleteClassificationByName)
-  )
-  
+)
   
 // Route to build Add Inventory view
 router.get(
@@ -63,6 +71,20 @@ router.post(
     invValidate.inventoryRules(),
     invValidate.checkInvData,
     utilities.handleErrors(invController.addInventory)
+)
+
+// Process Inventory Update (Edit form POST)
+router.post(
+    "/update",
+    invValidate.inventoryRules(),
+    invValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory)
+)
+
+// Return inventory as JSON for dynamic management table
+router.get(
+    "/getInventory/:classification_id",
+    utilities.handleErrors(invController.getInventoryJSON)
 )
 
 module.exports = router

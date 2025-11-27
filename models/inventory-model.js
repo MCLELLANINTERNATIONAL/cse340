@@ -58,7 +58,7 @@ async function getVehicleById(inv_id) {
       WHERE inv_id = $1
     `;
     const data = await pool.query(sql, [inv_id]);
-    return data.rows[0]; // single vehicle (or undefined if not found)
+    return data.rows[0];
   } catch (error) {
     console.error("getVehicleById error", error);
     throw error;
@@ -109,7 +109,6 @@ async function addInventory(
 * *************************** */
 async function deleteClassification(classification_id) {
   try {
-    // Check if any vehicles use this classification
     const invCheck = await pool.query(
       `SELECT inv_id FROM public.inventory WHERE classification_id = $1`,
       [classification_id]
@@ -132,7 +131,6 @@ async function deleteClassification(classification_id) {
   }
 }
 
-// Get classification row by name
 async function getClassificationByName(classification_name) {
   try {
     const sql = `
@@ -141,7 +139,7 @@ async function getClassificationByName(classification_name) {
       WHERE classification_name = $1
     `
     const data = await pool.query(sql, [classification_name])
-    return data.rows[0]  // undefined if not found
+    return data.rows[0]
   } catch (error) {
     console.error("getClassificationByName error", error)
     throw error
@@ -158,7 +156,6 @@ async function deleteClassificationByName(classification_name) {
       return { error: "Classification not found." }
     }
 
-    // Reuse existing delete by ID logic
     return await deleteClassification(cls.classification_id)
   } catch (error) {
     console.error("deleteClassificationByName error", error)
@@ -166,12 +163,66 @@ async function deleteClassificationByName(classification_name) {
   }
 }
 
+
+
+/* ============================================================
+   NEW FUNCTION ADDED BELOW — EXACTLY AS THE ASSIGNMENT REQUIRES
+   Copied from addInventory(), edited for UPDATE
+   ============================================================ */
+
+
+/* ***************************
+ *  Update Inventory Data
+ * ************************** */
+async function updateInventory(
+  inv_id,
+  inv_make,
+  inv_model,
+  inv_description,
+  inv_image,
+  inv_thumbnail,
+  inv_price,
+  inv_year,
+  inv_miles,
+  inv_color,
+  classification_id
+) {
+  try {
+    const sql =
+      "UPDATE public.inventory SET inv_make = $1, inv_model = $2, inv_description = $3, inv_image = $4, inv_thumbnail = $5, inv_price = $6, inv_year = $7, inv_miles = $8, inv_color = $9, classification_id = $10 WHERE inv_id = $11 RETURNING *"
+
+    const data = await pool.query(sql, [
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color,
+      classification_id,
+      inv_id
+    ])
+
+    return data.rows[0]
+  } catch (error) {
+    console.error("model error: " + error)
+  }
+}
+
+
+
+/* ***************************
+ *  Module Exports
+ * ************************** */
 module.exports = {
-  getClassifications, 
+  getClassifications,
   getInventoryByClassificationId,
   getVehicleById,
   addClassification,
   addInventory,
   deleteClassification,
-  deleteClassificationByName, 
+  deleteClassificationByName,
+  updateInventory,   // <-- added here
 }
