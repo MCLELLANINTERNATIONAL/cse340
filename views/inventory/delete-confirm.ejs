@@ -1,0 +1,23 @@
+<main id="delete-page">
+  <section class="delete-panel">
+  <h1>Delete <%= itemName %></h1>
+
+<pclass="delete-intro">Confirm Deletion - This action is permanent.</p>
+
+<form class="delete-form" action="/inv/delete" method="post">
+  <label for="inv_make">Make</label>
+  <input id="inv_make" type="text" value="<%= item.inv_make %>" readonly>
+
+  <label for="inv_model">Model</label>
+  <input id="inv_model" type="text" value="<%= item.inv_model %>" readonly>
+
+  <label for="inv_price">Price</label>
+  <input id="inv_price" type="text" value="<%= item.inv_price %>" readonly>
+
+  <label for="inv_year">Year</label>
+  <input id="inv_year" type="text" value="<%= item.inv_year %>" readonly>
+
+  <input type="hidden" name="inv_id" value="<%= item.inv_id %>">
+
+  <button type="submit" class="delete-btn">Delete</button>
+</form>
