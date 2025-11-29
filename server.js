@@ -33,7 +33,6 @@ app.use(session({
   name: 'sessionId',
 }))
 
-
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
