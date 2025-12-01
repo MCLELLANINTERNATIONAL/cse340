@@ -19,11 +19,23 @@
 
     <p class="login-notice">You're logged in.</p>
 
+    <!-- Update Account Information link (for ALL account types) -->
     <p>
-      <a href="/account/edit" class="account-edit-link">
-        Edit Account Information
+      <a href="/account/update/<%= accountData.account_id %>" class="account-edit-link">
+        Update Account Information
       </a>
     </p>
+
+    <!-- Only show this block if Employee or Admin -->
+    <% if (
+      accountData 
+      && (accountData.account_type === 'Employee' || accountData.account_type === 'Admin')
+    ) { %>
+      <h3>Inventory Management</h3>
+      <p>
+        <a href="/inv/">Go to Inventory Management</a>
+      </p>
+    <% } %>
   </section>
 </main>
 

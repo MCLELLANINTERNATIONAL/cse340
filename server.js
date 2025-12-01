@@ -7,17 +7,24 @@
  *************************/
 const session = require("express-session")
 const pool = require('./database/')
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+const utilities = require("./utilities/")
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
-const utilities = require("./utilities/")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute") 
-const bodyParser = require("body-parser")
-const cookieParser = require("cookie-parser")
+
+/* ***********************
+ * View Engine and Templates
+ *************************/
+app.set("view engine", "ejs")
+app.use(expressLayouts)
+app.set("layout", "./layouts/layout")
 
 /* ***********************
  * Middleware
@@ -50,36 +57,36 @@ app.use(cookieParser())
 // Login Process activity
 app.use(utilities.checkJWTToken)
 
-/* ***********************
- * View Engine and Templates
- *************************/
-app.set("view engine", "ejs")
-app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+// Serve static assets (CSS, JS, images) from /public
+app.use(express.static("public"))
+
 
 /* ***********************
  * Routes
  *************************/
 app.use(static)
+
 //Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
+
 // Intentional error route (Task 3)
 app.get(
   "/trigger-error",
   utilities.handleErrors(baseController.triggerError)
 )
+
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
 // Account routes
 app.use("/account", require("./routes/accountRoute"))
+
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
-})
-// Inventory routes
-app.use("/inv", inventoryRoute)
-app.use(express.static("public"))
-
+  next(
+    {status: 404,
+    message: 'Sorry, we appear to have lost that page.'})
+}) 
 
 /* ***********************
     Express Error Handler

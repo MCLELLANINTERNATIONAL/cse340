@@ -36,7 +36,48 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 )
 
-// Default Account Management View (after successful login)
+/* ****************************************
+ *  LOGOUT ROUTE
+ * *************************************** */
+router.get(
+  "/logout",
+  utilities.handleErrors(accountController.logoutAccount)
+)
+
+/* ****************************************
+ *  UPDATE ACCOUNT INFO VIEW
+ * *************************************** */
+router.get(
+  "/update/:account_id",
+  utilities.checkLogin, 
+  utilities.handleErrors(accountController.buildUpdateAccount)
+)
+
+/* ****************************************
+ *  PROCESS ACCOUNT UPDATE (POST)
+ *  /account/update
+ * *************************************** */
+router.post(
+  "/update",
+  regValidate.updateAccountRules(),
+  regValidate.checkUpdateAccountData,
+  utilities.handleErrors(accountController.updateAccount)
+)
+
+/* ****************************************
+ *  PROCESS PASSWORD CHANGE (POST)
+ *  /account/update-password
+ * *************************************** */
+router.post(
+  "/update-password",
+  regValidate.passwordUpdateRules(),
+  regValidate.checkPasswordData,
+  utilities.handleErrors(accountController.updatePassword)
+)
+
+/* ****************************************
+ *  Default Account Management View (after successful login)
+ * *************************************** */
 router.get(
   "/",
   utilities.checkLogin, 

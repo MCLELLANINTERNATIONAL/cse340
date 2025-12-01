@@ -173,7 +173,7 @@ Util.checkJWTToken = (req, res, next) => {
       process.env.ACCESS_TOKEN_SECRET,
       function (err, accountData) {
         if (err) {
-          req.flash("notice", "Please log in")
+          req.flash("notice", "Please login")
           res.clearCookie("jwt")
           return res.redirect("/account/login")
         } 
@@ -188,15 +188,40 @@ Util.checkJWTToken = (req, res, next) => {
 }
 
 /* ****************************************
- *  Check Login
+ *          Check Login
  * ************************************ */
 Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
     next()
   } else {
-    req.flash("notice", "Please log in.")
+    req.flash("notice", "Please login.")
     return res.redirect("/account/login")
   }
+}
+
+/* ****************************************
+ *     Check if user is Employee or Admin
+ *     (Authorization middleware)
+ * ************************************ */
+Util.checkEmployeeOrAdmin = (req, res, next) => {
+  const accountData = res.locals.accountData
+
+  // Must be logged in AND have a valid account_type
+  if (
+    res.locals.loggedin &&
+    accountData &&
+    (accountData.account_type === "Employee" ||
+      accountData.account_type === "Admin")
+  ) {
+    return next()
+  }
+
+  // Not authorized
+  req.flash(
+    "notice",
+    "You do not have permission to access this resource. Please login with an authorized account."
+  )
+  return res.redirect("/account/login")
 }
 
 module.exports = Util
