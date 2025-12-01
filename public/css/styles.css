@@ -1105,6 +1105,24 @@ main {
     margin-bottom: 1rem;
   }
   
+  .password-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .show-password-btn {
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    border: 1px solid #111827;
+    background: #e5e7eb;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  
+  .show-password-btn:hover {
+    background: #d1d5db;
+  }  
 
 /* *************** Footer ************* */
 
