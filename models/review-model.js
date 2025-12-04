@@ -3,15 +3,15 @@ const pool = require("../database/")
 /* ============================================================================
  *  Add New Review
  * ========================================================================== */
-async function addReview(review_text, inv_id, account_id) {
+async function addReview(review_date, review_text, inv_id, account_id) {
   try {
-    if (!review_text || !inv_id || !account_id) {
+    if (!review_date || review_text || !inv_id || !account_id) {
       throw new Error("Invalid review data.")
     }
 
     const sql = `
-      INSERT INTO review (review_text, inv_id, account_id)
-      VALUES ($1, $2, $3)
+      INSERT INTO review (review_date, review_text, inv_id, account_id)
+      VALUES ($1, $2, $3, $4)
       RETURNING *
     `
     const data = await pool.query(sql, [review_text, inv_id, account_id])

@@ -20,8 +20,10 @@ async function addReview(req, res) {
     return res.redirect(`/inv/detail/${inv_id}`)
   }
 
+  review_date = new Date()
+
   try {
-    await reviewModel.addReview(review_text.trim(), inv_id, account_id)
+    await reviewModel.addReview(review_date, review_text.trim(), inv_id, account_id)
     req.flash("notice", "Your review was added successfully.")
     return res.redirect(`/inv/detail/${inv_id}`)
   } catch (err) {
