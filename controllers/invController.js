@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const reviewModel = require("../models/review-model")
 
 const invCont = {}
 
@@ -68,13 +69,29 @@ invCont.buildDetailView = async function (req, res, next) {
       throw error
     }
 
-    const title = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
+    // Get reviews for this vehicle
+    const reviews = await reviewModel.getReviewsByInvId(invId)
+    
     const detailHtml = utilities.buildVehicleDetail(vehicleData)
+
+    // Build screen name (JSmith)
+    let screenName = null
+    if (res.locals.accountData) {
+      const f = res.locals.accountData.account_firstname
+      const l = res.locals.accountData.account_lastname
+      screenName = f.charAt(0) + l
+    }
+
+    const title = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
 
     res.render("./inventory/detail", {
       title,
       nav,
       detail: detailHtml,
+      vehicle: vehicleData,
+      reviews,
+      screenName,
+      accountData: res.locals.accountData || null,
       errors: null,
     })
   } catch (err) {
@@ -82,7 +99,6 @@ invCont.buildDetailView = async function (req, res, next) {
     next(err)
   }
 }
-
 /* ****************************************
  *  Deliver Add Classification view
  * *************************************** */

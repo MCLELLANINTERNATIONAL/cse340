@@ -1,0 +1,31 @@
+<h1><%= title %></h1>
+
+<main id="delete-review-page">
+  <section class="delete-review-panel">
+    <p class="delete-review-note">
+      Confirm correct item! Deletion cannot be undone.
+    </p>
+
+    <form action="/review/delete" method="post" class="delete-review-form">
+      
+      <div class="delete-review-row">
+        <label for="review_date">Review Date</label>
+        <input 
+          type="text" 
+          id="review_date" 
+          readonly 
+          value="<%= new Date(review.review_date).toLocaleDateString() %>"
+        >
+      </div>
+
+      <div class="delete-review-row">
+        <label for="review_text">Review Text</label>
+        <textarea id="review_text" readonly><%= review.review_text %></textarea>
+      </div>
+
+      <input type="hidden" name="review_id" value="<%= review.review_id %>">
+
+      <button class="delete-btn" type="submit">Delete</button>
+    </form>
+  </section>
+</main>

@@ -37,5 +37,30 @@
       </p>
     <% } %>
   </section>
-</main>
+  <section class="client-reviews">
+  <h2>Your Reviews</h2>
 
+  <% if (!clientReviews || clientReviews.length === 0) { %>
+    <p>You haven’t written any reviews yet.</p>
+  <% } else { %>
+    <ul class="client-review-list">
+      <% clientReviews.forEach(r => { %>
+        <li>
+          <p>
+            <strong><%= r.inv_make %> <%= r.inv_model %></strong><br>
+            <span><%= new Date(r.review_date).toLocaleDateString() %></span>
+          </p>
+          <p><%= r.review_text %></p>
+          <div class="review-actions">
+            <a href="/review/edit/<%= r.review_id %>">Edit</a>
+            |
+            <a href="/review/delete/<%= r.review_id %>">Delete</a>
+          </div>
+
+          
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</section>
+</main>

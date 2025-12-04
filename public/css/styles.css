@@ -794,14 +794,15 @@ main {
   padding: 0.7rem 2.4rem;
   border-radius: 999px;
   border: none;
-  background: #ffffff;
-  color: #111827;
+  background: blue;
+  color: white;
   font-weight: 700;
   cursor: pointer;
 }
 
 .btn-primary:hover {
-  background: #e5e7eb;
+  background: #a4f042;
+  color: black;
 }
 
 /* =============== Add Inventory Form Page ============================ */
@@ -902,21 +903,23 @@ main {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
+/* Account Management layout */
 #account-management {
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
+  padding: 1.5rem;
+  display: block;          /* stack sections top to bottom */
 }
 
+/* Make it look like the sample: no big floating card */
 .account-panel {
-  font-size: 2.2rem;
-  background: #ffffff;
-  padding: 2rem 2.5rem;
-  border-radius: 12px;
-  max-width: 600px;
+  background: transparent; 
+  padding: 0;
+  max-width: none;
   width: 100%;
-  box-shadow: 0 6px 18px rgba(54, 174, 230, 0.915);
-  text-align: center;
+  box-shadow: none;
+  border-radius: 0;
+  text-align: left;
+  font-size: 1.25rem; 
+  margin-bottom: 1.5rem;  
 }
 
 .login-notice {
@@ -1122,7 +1125,198 @@ main {
   
   .show-password-btn:hover {
     background: #d1d5db;
-  }  
+  }
+
+  /* ========== Reviews on Detail Page ========== */
+
+.reviews-section {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid #e5e7eb;
+}
+
+.reviews-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.review-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.review-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.review-meta {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin: 0 0 0.25rem;
+}
+
+.review-text {
+  margin: 0;
+}
+
+/* Review form under detail */
+.review-form textarea {
+  width: 100%;
+  min-height: 6rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 4px;
+  border: 1px solid #284585;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Edit review page */
+#edit-review-page {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+.edit-review-panel {
+  background: #78c2f344;          /* blue card like sample */
+  padding: 1.75rem 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  max-width: 600px;
+  width: 100%;
+}
+
+/* little "ALL FIELDS ARE REQUIRED." note */
+.edit-review-note {
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: rgb(182, 5, 5);
+  margin: 0 0 1rem;
+}
+
+/* rows for date + text */
+.edit-review-row {
+  margin-bottom: 1.2rem;
+  color: #1948c8;
+}
+
+.edit-review-row label {
+  display: block;
+  font-weight: 700;
+  color: blue;
+  margin-bottom: 0.25rem;
+}
+
+/* date + textarea styling */
+.edit-review-row input[type="text"],
+.edit-review-form textarea {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border-radius: 4px;
+  border: 1px solid #133785;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.edit-review-form textarea {
+  min-height: 12rem;
+}
+
+/* reuse your pill button style */
+.update-btn {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-top: 0.75rem;
+}
+
+.review-banner {
+  background-color: #fff3b0; 
+  color: blue;
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin: 10px 0 20px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ========== Delete Review Page ========== */
+
+#delete-review-page {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+.delete-review-panel {
+  background: #78c2f344; /* SAME as Edit Review card */
+  padding: 1.75rem 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  max-width: 600px;
+  width: 100%;
+}
+
+/* italic warning message */
+.delete-review-note {
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: rgb(182, 5, 5); /* SAME as Edit Review red note */
+  margin: 0 0 1rem;
+}
+
+.delete-review-form {
+  width: 100%;
+}
+
+.delete-review-row {
+  margin-bottom: 1.2rem;
+  color: #1948c8; /* SAME label color */
+}
+
+.delete-review-row label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+/* date & text fields */
+.delete-review-row input[readonly],
+.delete-review-row textarea[readonly] {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border-radius: 4px;
+  border: 1px solid #133785; /* SAME as Edit Review */
+  background: #f0fedb;       /* SAME light-blue input background */
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.delete-review-row textarea[readonly] {
+  min-height: 6rem;
+  resize: none;
+}
+
+/* delete button styled like your pill buttons */
+.delete-btn {
+  margin-top: 0.75rem;
+  padding: 0.6rem 1.8rem;
+  border-radius: 25px;
+  background: #d62828;
+  color: white;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #b71c1c;
+}
 
 /* *************** Footer ************* */
 

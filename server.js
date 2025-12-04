@@ -18,6 +18,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute") 
+const reviewRoute = require("./routes/reviewRoute")
 
 /* ***********************
  * View Engine and Templates
@@ -77,6 +78,9 @@ app.get(
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// Review routes
+app.use("/review", reviewRoute)
 
 // Account routes
 app.use("/account", require("./routes/accountRoute"))

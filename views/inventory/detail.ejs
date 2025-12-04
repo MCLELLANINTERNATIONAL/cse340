@@ -1,5 +1,53 @@
 <% if (title) { %>
-    <h1><%= title %></h1>
+  <h1><%= title %></h1>
+<% } %>
+
+<%- detail %>
+
+<section class="reviews-section">
+  <h2>Customer Reviews</h2>
+
+  <% if (reviews && reviews.length > 0) { %>
+    <ul class="review-list">
+      <% reviews.forEach(r => { 
+           const screenName = (r.account_firstname[0] + r.account_lastname).replace(/\s+/g,"")
+      %>
+        <li class="review-item">
+          <p class="review-meta">
+            <strong><%= screenName %></strong>
+            <span> - <%= new Date(r.review_date).toLocaleDateString() %></span>
+          </p>
+          <p class="review-text"><%= r.review_text %></p>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p class="review-banner">Be the first to write a review.</p>
   <% } %>
-  
-  <%- detail %>
+
+  <% if (!accountData) { %>
+    <p>
+      You must 
+      <a href="/account/login?redirect=/inv/detail/<%= vehicle.inv_id %>">login</a>
+      to write a review.
+    </p>
+  <% } else { 
+       const screenName =
+         (accountData.account_firstname[0] + accountData.account_lastname).replace(/\s+/g,"")
+  %>
+    <h3>Add Your Own Review</h3>
+
+    <form action="/review/add" method="post" class="review-form" novalidate>
+      <p><strong>Screen Name:</strong> <%= screenName %></p>
+
+      <label for="review_text">Review:</label>
+      <textarea id="review_text" name="review_text" required><%= typeof review_text !== "undefined" ? review_text : "" %></textarea>
+
+      <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+      <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+      <button type="submit" class="btn-primary">Submit Review</button>
+    </form>
+  <% } %>
+</section>
+ 
