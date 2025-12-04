@@ -1,10 +1,14 @@
 const pool = require("../database/")
 
-/* ****************************************
- *  Add new review
- * *************************************** */
+/* ============================================================================
+ *  Add New Review
+ * ========================================================================== */
 async function addReview(review_text, inv_id, account_id) {
   try {
+    if (!review_text || !inv_id || !account_id) {
+      throw new Error("Invalid review data.")
+    }
+
     const sql = `
       INSERT INTO review (review_text, inv_id, account_id)
       VALUES ($1, $2, $3)
@@ -18,16 +22,15 @@ async function addReview(review_text, inv_id, account_id) {
   }
 }
 
-/* ****************************************
- *  Get reviews for a vehicle (newest first)
- * *************************************** */
+/* ============================================================================
+ *  Get Reviews for Inventory Item (newest first)
+ * ========================================================================== */
 async function getReviewsByInvId(inv_id) {
   try {
     const sql = `
       SELECT r.review_id,
              r.review_text,
              r.review_date,
-             r.account_id,
              a.account_firstname,
              a.account_lastname
       FROM review r
@@ -43,9 +46,9 @@ async function getReviewsByInvId(inv_id) {
   }
 }
 
-/* ****************************************
- *  Get all reviews written by an account
- * *************************************** */
+/* ============================================================================
+ *  Get All Reviews by Account
+ * ========================================================================== */
 async function getReviewsByAccountId(account_id) {
   try {
     const sql = `
@@ -69,49 +72,54 @@ async function getReviewsByAccountId(account_id) {
   }
 }
 
-/* ****************************************
- *  Get single review by id
- * *************************************** */
-/* ****************************************
- *  Get single review by id (with vehicle info)
- * *************************************** */
+/* ============================================================================
+ *  Get a Single Review
+ * ========================================================================== */
 async function getReviewById(review_id) {
   try {
     const sql = `
-      SELECT 
-        r.review_id,
-        r.review_text,
-        r.review_date,
-        r.inv_id,
-        r.account_id,
-        i.inv_make,
-        i.inv_model,
-        i.inv_year
+      SELECT r.review_id,
+             r.review_text,
+             r.review_date,
+             r.inv_id,
+             r.account_id,
+             i.inv_make,
+             i.inv_model,
+             i.inv_year
       FROM review r
       JOIN inventory i ON r.inv_id = i.inv_id
       WHERE r.review_id = $1
     `
     const data = await pool.query(sql, [review_id])
-    return data.rows[0]
+    return data.rows[0] || null
   } catch (error) {
     console.error("getReviewById error", error)
     throw error
   }
 }
 
-/* ****************************************
- *  Update review text (by review_id)
- * *************************************** */
-async function updateReview(review_id, review_text) {
+/* ============================================================================
+ *  Update Review (Author Only)
+ * ========================================================================== */
+async function updateReview(review_id, account_id, review_text) {
   try {
+    if (!review_text) throw new Error("Review text cannot be empty.")
+
     const sql = `
       UPDATE review
-      SET review_text = $1,
-          review_date = NOW()
-      WHERE review_id = $2
+         SET review_text = $1,
+             review_date = NOW()
+       WHERE review_id = $2
+         AND account_id = $3
       RETURNING *
     `
-    const data = await pool.query(sql, [review_text, review_id])
+
+    const data = await pool.query(sql, [review_text, review_id, account_id])
+
+    if (data.rowCount === 0) {
+      throw new Error("Unauthorized update or review not found.")
+    }
+
     return data.rows[0]
   } catch (error) {
     console.error("updateReview error", error)
@@ -119,14 +127,24 @@ async function updateReview(review_id, review_text) {
   }
 }
 
-/* ****************************************
- *  Delete review (by review_id)
- * *************************************** */
-async function deleteReview(review_id) {
+/* ============================================================================
+ *  Delete Review (Author Only)
+ * ========================================================================== */
+async function deleteReview(review_id, account_id) {
   try {
-    const sql = `DELETE FROM review WHERE review_id = $1`
-    const data = await pool.query(sql, [review_id])
-    return data.rowCount
+    const sql = `
+      DELETE FROM review
+      WHERE review_id = $1
+        AND account_id = $2
+      RETURNING review_id
+    `
+    const data = await pool.query(sql, [review_id, account_id])
+
+    if (data.rowCount === 0) {
+      throw new Error("Unauthorized delete or review not found.")
+    }
+
+    return true
   } catch (error) {
     console.error("deleteReview error", error)
     throw error
@@ -134,9 +152,9 @@ async function deleteReview(review_id) {
 }
 
 module.exports = {
+  addReview,
   getReviewsByInvId,
   getReviewsByAccountId,
-  addReview,
   getReviewById,
   updateReview,
   deleteReview,
