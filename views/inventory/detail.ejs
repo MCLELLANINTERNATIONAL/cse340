@@ -15,6 +15,7 @@
         <li class="review-item">
           <p class="review-meta">
             <strong><%= screenName %></strong>
+            <%= new Date(r.review_date).toLocaleDateString() %>
           </p>
           <p class="review-text"><%= r.review_text %></p>
         </li>
