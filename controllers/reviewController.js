@@ -20,7 +20,7 @@ async function addReview(req, res) {
     return res.redirect(`/inv/detail/${inv_id}`)
   }
 
-  review_date = new Date()
+  const review_date = new Date()
 
   try {
     await reviewModel.addReview(review_date, review_text.trim(), inv_id, account_id)
